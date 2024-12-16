@@ -1,0 +1,21 @@
+<section id="tasks">
+    <!-- @if(name){ -->
+     <header>
+    <h2>{{name.split(' ')[0]}}'s tasks!</h2>
+    <menu>
+        <button (click)="onAddTask()">ADD TASK</button>
+    </menu>
+    </header> 
+        @if (addingTask) {
+            <app-add-task (userInput)="onAddTaskInput($event)" (cancelTask)="onCancelAddTask()"/>
+        }
+    <ul>
+        @for(task of tasksForUser; track task.id){
+            <li><app-task [task]="task" (taskCompleted)="onTaskCompleted($event)"/></li>
+        }    
+    </ul>
+    <!-- }
+    @else {
+        <p id="fallback">Please select a user to see their tasks.</p>
+    } -->
+</section>
